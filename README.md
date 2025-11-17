@@ -6,35 +6,24 @@ A modern, responsive task logging web application with PDF export capabilities, 
 
 🌟 Features
 🔐 Secure Authentication - Email/Password and Google Sign-in
-
 📝 Task Management - Log tasks with descriptions and images
-
 🖼️ Image Support - Attach images to tasks (up to 20MB)
-
 📊 PDF Export - Generate professional PDF reports with custom titles
-
 🌙 Dark/Light Theme - Toggle between themes
-
 📱 PWA Support - Install as a mobile app
-
 💾 Offline Support - Works offline with service workers
-
 🔒 Data Security - Users can only access their own data
-
 📤 JSON Import/Export - Backup and restore your tasks
-
 🚀 Live Demo
 View Live Application
 
+
+
 🛠️ Technology Stack
 Frontend: HTML5, CSS3, JavaScript (ES6+)
-
 Backend: Firebase (Authentication, Firestore)
-
 Storage: Firebase Storage for images
-
 PDF Generation: jsPDF
-
 PWA: Service Workers, Web App Manifest
 
 Icons: Emoji-based icons
@@ -42,67 +31,57 @@ Icons: Emoji-based icons
 📦 Installation
 Prerequisites
 A Firebase project (see setup instructions below)
-
 Modern web browser with JavaScript enabled
-
 GitHub account for deployment
+
 
 Firebase Setup
 Create Firebase Project
-
 Go to Firebase Console
-
 Create a new project named "task-logger"
-
 Enable Google Analytics (optional)
-
 Enable Authentication
-
 Go to Authentication → Sign-in method
-
 Enable Email/Password and Google providers
-
 Setup Firestore Database
-
 Go to Firestore Database → Create database
-
 Start in test mode for development
-
 Set up security rules (provided below)
-
 Get Configuration
-
 Go to Project Settings → General
-
 Add a web app and copy the configuration
-
 Replace the config in js/firebase-config.js
+
 
 Local Development
 Clone the repository
 
-bash
+
+**bash
 git clone https://github.com/zeelladani/task-logger.git
 cd task-logger
-Configure Firebase
+Configure Firebase**
 
 Update js/firebase-config.js with your Firebase project details
-
 Run locally
-
 Open index.html in a web browser
-
 Or use a local server:
+
 
 bash
 # Using Python
 python -m http.server 8000
 
+
 # Using Node.js
 npx http-server
-🔧 Firebase Configuration
+
+
+
+**🔧 Firebase Configuration
 Security Rules
 Add these rules to your Firestore database:
+**
 
 javascript
 rules_version = '2';
@@ -125,12 +104,15 @@ service cloud.firestore {
     }
   }
 }
+
+
+
 Authorized Domains
 In Firebase Authentication → Settings → Authorized domains, add:
-
 localhost (development)
-
 zeelladani.github.io (GitHub Pages)
+
+
 
 📱 PWA Features
 Installable: Add to home screen on mobile devices
@@ -141,40 +123,27 @@ Fast Loading: Cached resources for quick access
 
 App-like Experience: Fullscreen mode on mobile
 
+
 🎯 Usage
 Getting Started
 Sign Up/Login
-
 Create an account with email/password or use Google Sign-in
-
 Complete your profile with name and username
-
 Log Tasks
-
 Enter task description in the dashboard
-
 Optionally attach an image (JPEG, PNG, GIF)
-
 Click "Log Task" to save
-
 Manage Tasks
-
 View all logged tasks in chronological order
-
 Delete individual tasks as needed
-
 Clear all tasks with security confirmation
-
 Export Data
-
 PDF Export: Generate professional reports with custom titles
-
 JSON Export: Backup your tasks for safekeeping
-
 JSON Import: Restore tasks from backup files
-
 PDF Features
 Custom document titles
+
 
 Professional header with date, author, and time
 
