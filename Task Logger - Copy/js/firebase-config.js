@@ -1,13 +1,13 @@
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBXzdFr_Es8lc-NUhm2VVcYcob3eDLElEU",
-    authDomain: "common-e8760.firebaseapp.com",
-    databaseURL: "https://common-e8760-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "common-e8760",
-    storageBucket: "common-e8760.firebasestorage.app",
-    messagingSenderId: "583880384916",
-    appId: "1:583880384916:web:da59f45649c4c07a44ef81",
-    measurementId: "G-VB7JS7QVSH"
+    apiKey: "add here your firebase configuration",
+    authDomain: "add here your firebase configuration",
+    databaseURL: "add here your firebase configuration",
+    projectId: "add here your firebase configuration",
+    storageBucket: "add here your firebase configuration",
+    messagingSenderId: "add here your firebase configuration6",
+    appId: "add here your firebase configuration",
+    measurementId: "add here your firebase configuration"
 };
 
 // Check if Firebase is already initialized
@@ -49,4 +49,5 @@ try {
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { firebaseConfig, auth, db };
+
 }
