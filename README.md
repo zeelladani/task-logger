@@ -17,7 +17,6 @@ TABLE OF CONTENTS
 7. API Reference
 8. Security
 9. Troubleshooting
-10. Support
 
 1. INTRODUCTION
 ===============
@@ -80,7 +79,7 @@ Key Highlights:
 3.2 Quick Start
 ---------------
 1. Clone the repository:
-   git clone https://github.com/yourusername/task-logger.git
+   git clone https://github.com/zeelladani/task-logger.git
    cd task-logger
 
 2. Configure Firebase (see Section 4)
