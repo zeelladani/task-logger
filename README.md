@@ -4,7 +4,7 @@ TASK LOGGER - COMPLETE DOCUMENTATION
 
 Version: 2.0
 Date: 11/17/2025
-Website: [https://task.zeelladani.space/]([url](https://task.zeelladani.space/))
+Website: [https://task.zeelladani.space](https://task.zeelladani.space/)
 
 TABLE OF CONTENTS
 =================
