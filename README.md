@@ -344,15 +344,6 @@ Supported browsers:
 - Check manifest.json validity
 - Verify service worker registration
 
-10. SUPPORT
-===========
-
-10.1 Getting Help
------------------
-Email: support@tasklogger.com
-GitHub Issues: github.com/yourusername/task-logger/issues
-Documentation: Full docs in README.md
-
 10.2 Contributing
 -----------------
 We welcome contributions!
