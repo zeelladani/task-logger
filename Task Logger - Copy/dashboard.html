@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Logger - Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4361ee">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">Task Logger</div>
+                    <div class="user-info">
+                        <span id="user-display-name"></span>
+                        <span id="user-email" class="user-email"></span>
+                        <!-- Move account actions to navigation -->
+                        <nav class="header-nav">
+                            <button id="edit-profile" class="nav-btn">
+                                👤 Edit Profile
+                            </button>
+                            <button id="theme-toggle" class="nav-btn">
+                                <span class="theme-icon">🌙</span> Theme
+                            </button>
+                            <button id="logout-btn" class="nav-btn">Logout</button>
+                            <button id="delete-account" class="nav-btn danger">Delete Account</button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container dashboard">
+            <div class="dashboard-header">
+                <h1>Task Dashboard</h1>
+                <div class="current-time" id="current-time"></div>
+            </div>
+
+            <div class="card task-form animate-slide-up">
+                <h2>Log New Task</h2>
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="task-description">Task Description</label>
+                        <textarea id="task-description" placeholder="Enter task description..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-image">Add Image (Optional)</label>
+                        
+                        <!-- Simplified Media Picker -->
+                        <div class="media-picker">
+                            <div class="media-option">
+                                <input type="file" id="task-image" accept="image/*" class="hidden">
+                                <button type="button" id="choose-file" class="btn btn-secondary media-btn">
+                                    📁 Choose from Device
+                                </button>
+                            </div>
+                            
+                            <!-- Selected Image Preview -->
+                            <div id="selected-media-preview" class="media-preview hidden">
+                                <img id="image-preview" class="image-preview" alt="Selected Image">
+                                <button type="button" id="remove-media" class="btn btn-danger remove-btn">×</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary animate-pulse">Log Task</button>
+                    <div id="task-message" class="message"></div>
+                </form>
+            </div>
+
+            <div class="card tasks-list animate-slide-up">
+                <div class="dashboard-header">
+                    <h2>Logged Tasks <span class="task-counter">0</span></h2>
+                    <div class="task-actions">
+                        <button id="generate-pdf" class="btn btn-warning">Generate PDF</button>
+                        <button id="export-json" class="btn btn-success">Export JSON</button>
+                        <button id="import-json" class="btn btn-primary">Import JSON</button>
+                        <button id="clear-tasks" class="btn btn-danger">Clear Tasks</button>
+                    </div>
+                </div>
+                <div id="tasks-container">
+                    <div class="no-tasks">No tasks logged yet. Start by adding a task above.</div>
+                </div>
+                <div class="clear-hint">
+                    <small>Hint: To clear tasks, enter your login email as the security code</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content animate-scale">
+            <h3>Edit Profile</h3>
+            <form id="edit-profile-form">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Enter your last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-name">Username (Display Name)</label>
+                    <input type="text" id="user-name" placeholder="Enter your username" required>
+                    <small class="password-hint">This will be used as your display name and author name in PDFs</small>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" id="cancel-edit-profile" class="btn btn-secondary">Cancel</button>
+                </div>
+                <div id="edit-profile-message" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PDF Title Modal -->
+    <div id="pdf-title-modal" class="modal">
+        <div class="modal-content animate-scale">
+            <h3>Set PDF Title</h3>
+            <div class="form-group">
+                <label for="pdf-title-input">Enter PDF Title:</label>
+                <input type="text" id="pdf-title-input" placeholder="Enter custom PDF title" value="Task Log Report">
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-pdf-title" class="btn btn-warning">Generate PDF</button>
+                <button id="cancel-pdf-title" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal for PDF Generation -->
+    <div id="pdf-confirm-modal" class="modal">
+        <div class="modal-content animate-scale">
+            <h3>Confirm PDF Generation</h3>
+            <p>All tasks will be deleted after generating the PDF. Are you sure you want to continue?</p>
+            <div class="modal-actions">
+                <button id="confirm-pdf" class="btn btn-warning">Yes, Generate PDF</button>
+                <button id="cancel-pdf" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Tasks Modal -->
+    <div id="clear-tasks-modal" class="modal">
+        <div class="modal-content animate-scale">
+            <h3>Clear All Tasks</h3>
+            <p>This action cannot be undone. All tasks will be permanently deleted.</p>
+            <div class="form-group">
+                <label for="security-code">Enter your login email to confirm:</label>
+                <input type="text" id="security-code" placeholder="Enter your login email">
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-clear" class="btn btn-danger">Clear All Tasks</button>
+                <button id="cancel-clear" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="clear-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div id="delete-account-modal" class="modal">
+        <div class="modal-content animate-scale">
+            <h3>Delete Account</h3>
+            <p class="warning-text">⚠️ This action is permanent and cannot be undone!</p>
+            <ul class="warning-list">
+                <li>All your tasks and data will be permanently deleted</li>
+                <li>Your account will be completely removed</li>
+                <li>You will be logged out immediately</li>
+            </ul>
+            <div class="form-group">
+                <label for="delete-security-code">Enter your login email to confirm account deletion:</label>
+                <input type="text" id="delete-security-code" placeholder="Enter your login email">
+            </div>
+            <div class="modal-actions">
+                <button id="confirm-delete-account" class="btn btn-danger">Delete My Account</button>
+                <button id="cancel-delete-account" class="btn btn-secondary">Cancel</button>
+            </div>
+            <div id="delete-account-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/manifestation.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

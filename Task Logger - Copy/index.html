@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Logger - Welcome</title>
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4361ee">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <!-- Left Side - Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-overlay"></div>
+                <div class="welcome-content">
+                        <!-- <div class="welcome-image">
+                            <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Modern Sculpture" />
+                        </div> -->
+                    <h1>Welcome to Task Logger</h1>
+                    <p>Join our community today and boost your productivity</p>
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">📊</span>
+                            <span>Track your progress</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🖼️</span>
+                            <span>Add images to tasks</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📄</span>
+                            <span>Export to PDF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Auth Forms -->
+            <div class="auth-section">
+                <div class="auth-card">
+                    <!-- Tab Navigation -->
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" data-tab="login">Log in</button>
+                        <button class="tab-btn" data-tab="signup">Sign up</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <div id="login-section" class="tab-content active">
+                        <div class="form-header">
+                            <h2>Enter your email and password to log in</h2>
+                        </div>
+                        <form id="login-form" class="auth-form">
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" placeholder="example@gmail.com" required>
+                            </div>
+                            <div class="form-group password-group">
+                                <label for="login-password">Password</label>
+                                <div class="password-input-container">
+                                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                                    <button type="button" class="toggle-password" id="toggle-login-password">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="remember-me">
+                                    <span class="checkmark"></span>
+                                    Remember me
+                                </label>
+                                <a href="#" class="forgot-link" id="forgot-password-link">Forgot password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                Log in
+                            </button>
+                            <div class="auth-divider">
+                                <span>or</span>
+                            </div>
+                            <button type="button" id="google-login" class="btn btn-google">
+                                <span class="btn-icon"></span>
+                                Continue with Google
+                            </button>
+                            <div class="auth-switch">
+                                Don't have an account? <a href="#" id="show-signup">Sign up</a>
+                            </div>
+                            <div id="login-error" class="error-message"></div>
+                        </form>
+                    </div>
+
+                    <!-- Signup Form -->
+                    <div id="signup-section" class="tab-content">
+                        <div class="form-header">
+                            <h2>Create your account</h2>
+                        </div>
+                        <form id="signup-form" class="auth-form">
+                            <div class="form-group">
+                                <label for="signup-email">Email</label>
+                                <input type="email" id="signup-email" placeholder="example@gmail.com" required>
+                            </div>
+                            <div class="form-group password-group">
+                                <label for="signup-password">Password</label>
+                                <div class="password-input-container">
+                                    <input type="password" id="signup-password" placeholder="Create a password" minlength="6" required>
+                                    <button type="button" class="toggle-password" id="toggle-signup-password">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                                <div class="password-hint">Minimum 6 characters</div>
+                            </div>
+                            <div class="form-group password-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <div class="password-input-container">
+                                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                                    <button type="button" class="toggle-password" id="toggle-confirm-password">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                Sign up
+                            </button>
+                            <div class="auth-divider">
+                                <span>or</span>
+                            </div>
+                            <button type="button" id="google-signup" class="btn btn-google">
+                                <span class="btn-icon">🔍</span>
+                                Continue with Google
+                            </button>
+                            <div class="auth-switch">
+                                Already have an account? <a href="#" id="show-login">Log in</a>
+                            </div>
+                            <div id="signup-error" class="error-message"></div>
+                            <div id="signup-success" class="success-message"></div>
+                        </form>
+                    </div>
+
+                    <!-- Forgot Password Form -->
+                    <div id="forgot-password-section" class="hidden">
+                        <div class="form-header">
+                            <h2>Reset your password</h2>
+                            <p>Enter your email and we'll send you a reset link</p>
+                        </div>
+                        <form id="forgot-password-form" class="auth-form">
+                            <div class="form-group">
+                                <label for="forgot-password-email">Email</label>
+                                <input type="email" id="forgot-password-email" placeholder="example@gmail.com" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                Send Reset Link
+                            </button>
+                            <div class="auth-switch">
+                                <a href="#" id="show-login-from-forgot">Back to Log in</a>
+                            </div>
+                            <div id="forgot-password-error" class="error-message"></div>
+                            <div id="forgot-password-success" class="success-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/manifestation.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
